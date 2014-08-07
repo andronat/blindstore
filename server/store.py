@@ -41,7 +41,7 @@ class Store:
         :param database: numpy matrix of database values.
         """
 
-        self.database = database or np.array([[0] * record_blength for _ in xrange(record_count)])
+        self.database = database or np.array([[0] * record_blength for _ in range(record_count)])
         self.record_count, self.record_blength = database.shape
         # Index length is in bits
         self.index_blength = index_length(self.record_count)
