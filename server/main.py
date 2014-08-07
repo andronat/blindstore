@@ -22,7 +22,7 @@ store = Store(database=np.array([[1, 1, 1, 1],
 def get_db_size():
     data = {
         'num_records': store.record_count,
-        'record_size': store.record_size,
+        'record_size': store.record_blength,
         'index_length': store.index_length
     }
     return json.dumps(data), 200, {'Content-Type': 'text/json'}
@@ -50,6 +50,6 @@ def set():
     index = int(request.form['INDEX'])
     data = int.from_bytes(base64.b64decode(request.form['DATA']), 'big')
 
-    store.set(index, binary(data, store.record_size))
+    store.set(index, binary(data, store.record_blength))
     return '', 200
 
